@@ -4,8 +4,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "knex": "node --no-warnings --import tsx ./node_modules/knex/bin/cli.js",
-    "lint": "eslint src --ext .ts --fix"
+    "knex": "node --no-warnings --import tsx ./node_modules/knex/bin/cli.js"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +12,7 @@
   "description": "",
   "devDependencies": {
     "@types/node": "^24.5.2",
+    "ts-node": "^10.9.2",
     "tsx": "^4.20.5",
     "typescript": "^5.9.2"
   },
