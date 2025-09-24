@@ -4,6 +4,7 @@ import { knex } from "../database";
 import { randomUUID } from "node:crypto";
 
 // Request Body: HTTPs -> Serve para criar ou editar algum recurso.
+// Cookie -> Formas da gente manter contexto entre requisições
 
 export async function transactionsRoutes(app: FastifyInstance) {
 
@@ -43,11 +44,23 @@ export async function transactionsRoutes(app: FastifyInstance) {
       request.body
     );
 
+    let sessionId = request.cookies.sessionId
+
+    if(!sessionId){
+      sessionId = randomUUID()
+
+      reply.cookie('sessionId', sessionId, {
+        path: '/',
+        maxAge: 1000 * 60* 60 * 24 * 7
+      })
+    }
+
     await knex("transactions").insert({
       id: randomUUID(),
       title,
       amount: type === "credit" ? amount : amount * -1,
       //A transação pode ser do tipo crédito que somará ao valor total, ou débito subtrairá;
+      session_id: sessionId
     });
 
     return reply.status(201).send();
