@@ -4,7 +4,8 @@
   "main": "server.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "knex": "node --no-warnings --import tsx ./node_modules/knex/bin/cli.js"
+    "knex": "node --no-warnings --import tsx ./node_modules/knex/bin/cli.js",
+    "test": "vitest"
   },
   "keywords": [],
   "author": "",
@@ -12,9 +13,12 @@
   "description": "",
   "devDependencies": {
     "@types/node": "^24.5.2",
+    "@types/supertest": "^6.0.3",
+    "supertest": "^7.1.4",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.5",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
   },
   "dependencies": {
     "-": "^0.0.1",
